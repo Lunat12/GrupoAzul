@@ -77,8 +77,15 @@ WSGI_APPLICATION = 'Bicify.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'bicify',
+        'ENFORCE_SCHEMA': True,
+        'CLIENT': {
+            'host': 'mongodb+srv://alfonsofuentes:ladondasalvaje1@cluster0.a0dad4t.mongodb.net/',
+            'username': 'alfonsofuentes',
+            'password': 'ladondasalvaje1',
+            'authMechanism': 'SCRAM-SHA-1',
+        }
     }
 }
 
