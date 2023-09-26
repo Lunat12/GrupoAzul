@@ -1,0 +1,23 @@
+{% block title %} <title> Registro </title>{% endblock %}
+{% block content %}
+<h1><u>Registro de usuarios:</h1></u>
+{% load static %}
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    
+    {{form}}
+    <br>
+    
+    <button type="submit" class="btn btn-primary" style="background-color: rgb(046, 139, 087);">
+        <i class="fa fa-sign-in-alt"></i> Login
+    </button>
+    <br>
+    <br>
+</form>
+
+{% if message == 1 %}
+    <p class="text-sucess"> Hemos recibido su solicitud </p>
+{% endif %}
+
+{% endblock %}
