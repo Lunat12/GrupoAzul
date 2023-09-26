@@ -1,7 +1,11 @@
 
-from Bicify.tienda.forms import NewRegisterForm
+from .forms import NewRegisterForm
 from .models import User
 from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("Hola, bienvenido a la tienda.")
 
 def register(request):
     message = 0
