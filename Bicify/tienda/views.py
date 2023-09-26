@@ -1,5 +1,5 @@
 
-from Bicify.tienda.forms import NewRegisterForm
+from .forms import NewRegisterForm
 from .models import User
 from django.shortcuts import render
 
