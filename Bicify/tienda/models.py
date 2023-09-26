@@ -1,5 +1,5 @@
-
 from django.db import models
+
 
 class User(models.Model):
     name = models.CharField(max_length=255)
@@ -47,3 +47,5 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"Sale on {self.date_of_sale}"
+
+# Create your models here.
