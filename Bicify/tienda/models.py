@@ -20,11 +20,28 @@ class User(models.Model):
         return self.name
 
 class Product(models.Model):
+
+    CATEGORY_CHOICES =(
+        ('Bicicletas','Bicicleta'),
+        ('Bicileta de Montaña','Bicileta de Montaña'),
+        ('Bicicleta Hibrida','Bicicleta Hibrida'),
+        ('Bicicleta BMX','Bicicleta BMX'),
+    )
+
+    SUBCATEGORY_CHOICES =(
+        ('Sillines','Sillines'),
+        ('Cadenas','Cadenas'),
+        ('Ruedas','Ruedas'),
+        ('Bomba de aire','Bomba de aire'),
+        ('Manguitos','Manguitos'),   
+        ('Candado','Candado'),
+        )
+
     product_name = models.CharField(max_length=255)
     product_images = models.ImageField(upload_to='product_images/')
     description = models.TextField()
-    category = models.CharField(max_length=100)
-    subcategory = models.CharField(max_length=100)
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES,blank=True, null=True)
+    subcategory = models.CharField(max_length=100, choices=SUBCATEGORY_CHOICES, blank=True, null=True)
     size = models.CharField(max_length=20, blank=True, null=True)
     battery_h = models.CharField(max_length=20, blank=True, null=True)
     color = models.CharField(max_length=50, blank=True, null=True)
