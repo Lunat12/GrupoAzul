@@ -36,6 +36,7 @@ class Product(models.Model):
         ('Manguitos','Manguitos'),   
         ('Candado','Candado'),
         )
+        
 
     product_name = models.CharField(max_length=255)
     product_images = models.ImageField(upload_to='product_images/')
@@ -66,3 +67,8 @@ class Sale(models.Model):
         return f"Sale on {self.date_of_sale}"
 
 # Create your models here.
+
+
+
+class ImageModel(models.Model):
+    image = models.ImageField(upload_to='images/')
