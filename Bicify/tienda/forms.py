@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class NewRegisterForm(forms.Form):
@@ -29,3 +30,8 @@ class NewRegisterForm(forms.Form):
     admin_user = forms.BooleanField(label='admin_user',required=False,
                         widget=forms.CheckboxInput(attrs={'class':"form-control",'placeholder':'name'}))
     
+class LoginForm(AuthenticationForm):
+    email = forms.CharField(label='email', max_length=250,
+                        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'email'}))
+    password = forms.CharField(label='password', 
+                        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))

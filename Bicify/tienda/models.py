@@ -2,7 +2,6 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-
 class User(models.Model):
     name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
