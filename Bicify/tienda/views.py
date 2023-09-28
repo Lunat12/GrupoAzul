@@ -5,7 +5,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 
 
 def index(request):
@@ -48,7 +48,6 @@ def register(request):
 
     return render(request,"register.html",context=context)
 
-
 @login_required
 def profile(request):
     if request.user.is_authenticated:
@@ -72,7 +71,7 @@ def login(request):
             password = form.cleaned_data.get("password")
             user = authenticate(request,email=email,password=password)
             if user is not None:
-                login(request,user)
+                auth_login(request,user)
                 return redirect('profile')
             else:
                 message = 2
