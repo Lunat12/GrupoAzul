@@ -1,8 +1,12 @@
 
 from .forms import NewRegisterForm
 from .models import User
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
+
 
 def index(request):
     return HttpResponse("Hola, bienvenido a la tienda.")
@@ -44,6 +48,44 @@ def register(request):
 
     return render(request,"register.html",context=context)
 
+
+@login_required
+def profile(request):
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = None
+
+    context = {
+        'user':user,
+        }
+
+    return render(request,"profile.html",context=context)
+
+
+def login(request):
+    message = 0
+    if request.method == 'POST':
+        form=NewRegisterForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            user = authenticate(request,email=email,password=password)
+            if user is not None:
+                login(request,user)
+                return redirect('profile')
+            else:
+                message = 2
+        else:
+            message=1
+    else:
+        form = NewRegisterForm()
+
+    context={
+        'form':form,
+        'message':message,
+    }
+    return render(request,'login.html',context=context)
 
 
 # Create your views here.
