@@ -22,7 +22,7 @@ def register(request):
                 registers.last_name = form.cleaned_data["last_name"]
                 registers.email = form.cleaned_data["email"]
                 registers.phone = form.cleaned_data["phone"]
-                registers.password = form.cleaned_data["password"]
+                registers.password = make_password(form.cleaned_data["password"])
                 registers.card_number = form.cleaned_data["card_number"]
                 registers.card_name = form.cleaned_data["card_name"]
                 registers.address = form.cleaned_data["address"]
