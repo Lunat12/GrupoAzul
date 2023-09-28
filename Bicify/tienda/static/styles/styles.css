@@ -1,0 +1,33 @@
+@font-face {
+    font-family: inter;
+    src: url('fonts/inter/inter-regular.otf');
+}
+
+@font-face {
+    font-family: rolling-beat;
+    src: url('fonts/rolling-beat/rolling-beat.ttf');
+}
+
+.header-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-header{
+    min-width: 100px;
+    padding: 7px 15px 7px 15px;
+    border-radius: 7px;
+    font-family: inter;
+    background-color: #9DDC8F;
+    border-width: 2px;
+    margin-left: 10px;
+}
+
+.carrito{
+    background-color: #0D6302;
+    margin-left: 50px;
+    color: white;
+    border: none;
+}
