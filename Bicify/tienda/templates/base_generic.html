@@ -4,7 +4,8 @@
     
     <head>
 
-        <title>Bicify</title>
+        {% block title  %}{% endblock %}
+
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,47 +16,41 @@
         <!-- Add additional CSS in static file -->
         {% load static %}
         <!-- <link rel="icon" href="{% static '/images/favicon.png' %}" type="image/png"> -->
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/css/base_generic.css' %}">
 
     </head>
 
-    <body>
 
-        <header>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="header-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
-                            <h1 class="fs-7 mt-3" style="color: #0D6302; font-family: rolling-beat;">Bicify</h1>
-                            <div>
-                                <button class="button-header" style="min-width: 100px; padding: 7px 15px 7px 15px; border-radius: 7px; font-family: inter; background-color: #9DDC8F; border-width: 2px; margin-left: 10px;">Bicicletas</button>
-                                <button class="button-header" style="min-width: 100px; padding: 7px 15px 7px 15px; border-radius: 7px; font-family: inter; background-color: #9DDC8F; border-width: 2px; margin-left: 10px;">Accesorios</button>
-                                <button class="button-header" style="min-width: 100px; padding: 7px 15px 7px 15px; border-radius: 7px; font-family: inter; background-color: #9DDC8F; border-width: 2px; margin-left: 10px;">Login</button>
-                                <button class="button-header carrito" style="margin-left: 50px; min-width: 100px; padding: 7px 15px 7px 15px; border-radius: 7px; font-family: inter; background-color: #0D6302; color: white; border: none;">Carrito</button>
-                            </div>
+
+
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-container">
+                        <!-- Título -->
+                        <h1 class="fs-7">Bicify</h1>
+                        
+                        <!-- Botones -->
+                        <div>
+                            <button class="button-header">Bicicletas</button>
+                            <button class="button-header">Accesorios</button>
+                            <button class="button-header">Blog</button>
+                            <button class="button-header">Contacto</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main>
-            <div class="container-fluid mt-3">
-                <div class="row">
 
-                    <div class="col-sm-12 ">
-                        {% block content %}
 
-                        {% endblock %}
-                    </div>
-                    
-                </div>
-            </div>
-        </main>
 
-        <footer class="footer_relative">
+    {% block content %}{% endblock %}
+    <!-- ... -->
+</body>
 
-        </footer>
-       
-    </body>
-</html>
+<!-- ... -->

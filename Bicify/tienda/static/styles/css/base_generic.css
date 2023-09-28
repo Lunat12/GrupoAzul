@@ -1,0 +1,61 @@
+/* Fuentes */
+@font-face {
+    font-family: inter;
+    src: url('fonts/inter/inter-regular.otf');
+}
+
+@font-face {
+    font-family: rolling-beat;
+    src: url('fonts/rolling-beat/rolling-beat.ttf');
+}
+
+/* Estilo global */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Estilo del encabezado */
+.header-container {
+    padding: 1rem;
+}
+
+.fs-7 {
+    font-size: 2.5rem; /* Puedes ajustar según tus necesidades */
+    color: #0D6302;
+    font-family: rolling-beat;
+}
+
+/* Estilo de los botones */
+.button-header {
+    background-color: #0D6302;
+    color: white;
+    border: 2px solid black;
+    font-family: inter;
+    min-width: 100px;
+    padding: 7px 15px;
+    border-radius: 7px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button-header:hover {
+    background-color: #095002; /* Un tono de verde un poco más oscuro al hacer hover */
+}
+
+.carrito {
+    background-color: #0D6302;
+    margin-left: 50px;
+    color: white;
+    border: none;
+}
+
+/* Estilo responsive */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+    }
+
+    .fs-7 {
+        margin-bottom: 1rem;
+    }
+}
