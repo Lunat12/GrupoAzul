@@ -1,11 +1,11 @@
 
-from .forms import NewRegisterForm
+from .forms import NewRegisterForm, LoginForm
 from .models import User
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 
 
 def index(request):
@@ -49,7 +49,7 @@ def register(request):
     return render(request,"register.html",context=context)
 
 
-@login_required
+#@login_required
 def profile(request):
     if request.user.is_authenticated:
         user = request.user
@@ -63,31 +63,33 @@ def profile(request):
     return render(request,"profile.html",context=context)
 
 
-def login(request):
+def user_login(request):  # Cambia el nombre de la función
     message = 0
     if request.method == 'POST':
-        form=NewRegisterForm(request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            user = authenticate(request,email=email,password=password)
+            user = authenticate(request, email=email, password=password)
+            print("Usuario autenticado:", user)
             if user is not None:
-                login(request,user)
+                auth_login(request, user) 
+                print("Es autenticado:", request.user.is_authenticated) 
                 return redirect('profile')
             else:
                 message = 2
         else:
-            message=1
+            message = 1
     else:
-        form = NewRegisterForm()
+        form = LoginForm()
 
-    context={
-        'form':form,
-        'message':message,
+    context = {
+        'form': form,
+        'message': message,
     }
-    return render(request,'login.html',context=context)
+    return render(request, 'login.html', context=context)
 
 
-# Create your views here.
+
 
 
