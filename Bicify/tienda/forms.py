@@ -30,3 +30,6 @@ class NewRegisterForm(UserCreationForm):
                         widget=forms.CheckboxInput(attrs={'class':"form-control",'placeholder':'name'}))
     admin_user = forms.BooleanField(label='admin_user',required=False,
                         widget=forms.CheckboxInput(attrs={'class':"form-control",'placeholder':'name'}))
+
+    
+
