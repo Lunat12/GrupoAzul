@@ -41,9 +41,6 @@ class Product(models.Model):
         ('Bomba de aire','Bomba de aire'),
         ('Manguitos','Manguitos'),   
         ('Candado','Candado'),
-        ('Bicicleta de Montaña','Bicicleta de Montaña'),
-        ('Bicicleta Hibrida','Bicicleta Hibrida'),
-        ('Bicicleta BMX','Bicicleta BMX'),
         )
 
     product_name = models.CharField(max_length=255)
