@@ -1,12 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
-class User(models.Model):
-    name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
+
+class Registers(models.Model):
+    id_user = models.OneToOneField(User,on_delete=models.SET_NULL, null=True)
     phone = models.CharField(max_length=15)
-    password = models.CharField(max_length=255)
     card_number = models.CharField(max_length=16, blank=True, null=True)
     card_name = models.CharField(max_length=255, blank=True, null=True)
     address = models.TextField()
@@ -15,9 +17,15 @@ class User(models.Model):
     zip_code = models.CharField(max_length=10)
     premium_user = models.BooleanField(default=False)
     admin_user = models.BooleanField(default=False)
+    
+    class Meta:
+        ordering = ['id_user']
 
-    def __str__(self):
-        return self.name
+
+#@receiver(pre_save, sender=User)
+#def roles(sender, instance, **kwargs):
+    #if instance.premium_user and instance.admin_user:
+        #raise ValidationError("No puedes ser tanto un usuario premium como un administrador al mismo tiempo.")
 
 class Product(models.Model):
 
@@ -51,7 +59,8 @@ class Product(models.Model):
         return self.product_name
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_user = models.OneToOneField(User,on_delete=models.SET_NULL, null=True)
+
     product_list = models.ManyToManyField(Product)
 
     def __str__(self):
@@ -60,7 +69,7 @@ class Cart(models.Model):
 class Sale(models.Model):
     date_of_sale = models.DateField()
     product_list = models.ManyToManyField(Product)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_user = models.OneToOneField(User,on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f"Sale on {self.date_of_sale}"

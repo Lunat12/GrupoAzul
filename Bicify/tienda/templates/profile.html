@@ -1,10 +1,22 @@
-{% extends "base_generic.html" %}
 {% load static %}
 
-{% block title %}
-<title>Profile</title>
+{% block title %} 
+    <title> Profile </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/inicio_registro.css' %}">
 {% endblock %}
-
 {% block content %}
-<p>hola</p>
+    <div class="container custom-container">
+        <h1 class="title">Profile</h1>
+        <p>Nombre: {{ user.first_name }}</p>
+        <p>Apellido: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Phone: {{ registers.phone }}</p>
+        <p>Card number: {{ registers.card_number }}</p>
+        <p>Card name: {{ registers.card_name }}</p>
+        <p>Address: {{ registers.address }}</p>
+        <p>Billing address: {{ registers.billing_address }}</p>
+        <p>City: {{ registers.city }}</p>
+        <p>Zip_code: {{ registers.zip_code }}</p>
+    </div>
 {% endblock %}

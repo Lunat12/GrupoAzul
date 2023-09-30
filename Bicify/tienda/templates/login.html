@@ -1,30 +1,48 @@
 {% load static %}
 
 {% block title %} 
-    <title> Registro </title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/css/inicio_registro.css' %}">
+    <title> Login </title>
+
 {% endblock %}
 
-{% block content %}
-    <div class="container custom-container">
-        <h1 class="title">Iniciar sesión</h1>
-        <form action="" method="post" class="form">
-            {% csrf_token %}
-            <div class="form-group">
-                {% for field in form %}
-                    {{ field }}
-                {% endfor %}
-            </div>
-            <div class="submit-button">
-                <button type="submit" class="btn btn-primary btn-lg button">
-                    <i class="fa fa-sign-in-alt"></i> Iniciar sesión
-                </button>
-            </div>
-        </form>
+<form method="post">
+    {% csrf_token %}
 
-        {% if message == 1 %}
-            <p class="text-success"> Hemos recibido su solicitud </p>
-        {% endif %}
+    <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">Username:</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-user"></i>
+                </span>
+            </div>
+            {{ form.username }}
+        </div>
     </div>
-{% endblock %}
+
+    <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">Password:</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-lock"></i>
+                </span>
+            </div>
+            {{ form.password }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="background-color: rgb(046, 139, 087);">
+        <i class="fa fa-sign-in-alt"></i> Login
+    </button>
+
+    {% if form.errors %}
+        <p class="text-danger">
+            Your username and password didn't match. Please try again.
+        </p>
+    {% endif %}
+
+</form>
+
+<br>
+<br>
