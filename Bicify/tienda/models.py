@@ -31,7 +31,9 @@ class Product(models.Model):
 
     CATEGORY_CHOICES =(
         ('Bicicletas','Bicicleta'),
-        ('Accesorios','Accesorios'),,
+        ('Bicileta de Montaña','Bicileta de Montaña'),
+        ('Bicicleta Hibrida','Bicicleta Hibrida'),
+        ('Bicicleta BMX','Bicicleta BMX'),
     )
 
     SUBCATEGORY_CHOICES =(
@@ -41,9 +43,6 @@ class Product(models.Model):
         ('Bomba de aire','Bomba de aire'),
         ('Manguitos','Manguitos'),   
         ('Candado','Candado'),
-        ('Bicicleta de Montaña','Bicicleta de Montaña'),
-        ('Bicicleta Hibrida','Bicicleta Hibrida'),
-        ('Bicicleta BMX','Bicicleta BMX'),
         )
 
     product_name = models.CharField(max_length=255)
@@ -74,15 +73,5 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"Sale on {self.date_of_sale}"
-
-
-class Categories(models.Model):
-
-    product_categories = models.CharField(max_length=255)
-
-
-class Subcategories(models.Models):
-    product_subcategories = models.CharField(max_length=255)
-
 
 # Create your models here.
