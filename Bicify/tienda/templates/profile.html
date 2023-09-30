@@ -8,15 +8,15 @@
 {% block content %}
     <div class="container custom-container">
         <h1 class="title">Profile</h1>
-        <p>Nombre: {{ user_profile.name }}</p>
-        <p>Apellido: {{ user_profile.last_name }}</p>
-        <p>Email: {{ user_profile.email }}</p>
-        <p>Phone: {{ user_profile.phone }}</p>
-        <p>Card number: {{ user_profile.card_number }}</p>
-        <p>Card name: {{ user_profile.card_name }}</p>
-        <p>Address: {{ user_profile.address }}</p>
-        <p>Billing address: {{ user_profile.billing_address }}</p>
-        <p>City: {{ user_profile.city }}</p>
-        <p>Zip_code: {{ user_profile.zip_code }}</p>
+        <p>Nombre: {{ user.first_name }}</p>
+        <p>Apellido: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Phone: {{ registers.phone }}</p>
+        <p>Card number: {{ registers.card_number }}</p>
+        <p>Card name: {{ registers.card_name }}</p>
+        <p>Address: {{ registers.address }}</p>
+        <p>Billing address: {{ registers.billing_address }}</p>
+        <p>City: {{ registers.city }}</p>
+        <p>Zip_code: {{ registers.zip_code }}</p>
     </div>
 {% endblock %}

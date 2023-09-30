@@ -1,18 +1,19 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 
-
-class NewRegisterForm(forms.Form):
-    name = forms.CharField(label='name',max_length=250,
-                        widget=forms.TextInput(attrs={'class':"form-control",'placeholder':'name'}))
-    last_name = forms.CharField(label='last_name',max_length=250,
-                        widget=forms.TextInput(attrs={'class':"form-control",'placeholder':'last_name'}))
-    email = forms.CharField(label='email',max_length=250,
-                        widget=forms.TextInput(attrs={'class':"form-control",'placeholder':'email'}))
-    phone = forms.IntegerField(label='phone',
-                        widget=forms.TextInput(attrs={'class':"form-control",'placeholder':'phone'}))
-    password = forms.CharField(label='password',
-                        widget=forms.PasswordInput(attrs={'class':"form-control",'placeholder':'password'}))
+class NewRegisterForm(UserCreationForm):
+    first_name = forms.CharField(label='First name', max_length=250, 
+                    widget=forms.TextInput(attrs={'class': "form-control", 'placeholder': 'first name'}))
+    last_name = forms.CharField(label='last name', max_length=250, 
+                    widget=forms.TextInput(attrs={'class': "form-control", 'placeholder': 'last name'}))
+    email = forms.EmailField(label='email', max_length=250, 
+                    widget=forms.TextInput(attrs={'class': "form-control", 'placeholder': 'email'}))
+    phone = forms.CharField(label='phone', max_length=15,
+                    widget=forms.TextInput(attrs={'class': "form-control", 'placeholder': 'phone'}))
+    password1 = forms.CharField(label='password',
+                    widget=forms.PasswordInput(attrs={'class': "form-control", 'placeholder': 'password'}))
+    password2 = forms.CharField(label='repeat password', 
+                    widget=forms.PasswordInput(attrs={'class': "form-control", 'placeholder': 'repeat password'}))
     card_number = forms.CharField(label='card_number',max_length=350,
                         widget=forms.TextInput(attrs={'class':"form-control",'placeholder':'card_number'}))
     card_name = forms.CharField(label='card_name',max_length=250,
@@ -29,9 +30,3 @@ class NewRegisterForm(forms.Form):
                         widget=forms.CheckboxInput(attrs={'class':"form-control",'placeholder':'name'}))
     admin_user = forms.BooleanField(label='admin_user',required=False,
                         widget=forms.CheckboxInput(attrs={'class':"form-control",'placeholder':'name'}))
-    
-class LoginForm(AuthenticationForm):
-    email = forms.CharField(label='Email', max_length=250, 
-                        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
-    password = forms.CharField(label='Password', 
-                        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
