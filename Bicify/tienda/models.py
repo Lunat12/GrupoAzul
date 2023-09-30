@@ -31,7 +31,7 @@ class Product(models.Model):
 
     CATEGORY_CHOICES =(
         ('Bicicletas','Bicicleta'),
-        ('Accesorios','Accesorios'),,
+        ('Accesorios','Accesorios'),
     )
 
     SUBCATEGORY_CHOICES =(
@@ -81,7 +81,7 @@ class Categories(models.Model):
     product_categories = models.CharField(max_length=255)
 
 
-class Subcategories(models.Models):
+class Subcategories(models.Model):
     product_subcategories = models.CharField(max_length=255)
 
 
