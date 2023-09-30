@@ -37,8 +37,10 @@ def register(request):
                     registers.premium_user = form.cleaned_data["premium_user"]
                     registers.admin_user = form.cleaned_data["admin_user"]
                     registers.save()
-                    message = 1 
+                    message = 1
                     form = NewRegisterForm()
+                    return redirect('profile')
+
                 except:
                     message = 3 
         else:
@@ -56,37 +58,7 @@ def register(request):
 
 
 
-def login(request):
-    message = 0
-    if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
-        if form.is_valid():
-            email = form.cleaned_data.get("email")
-            password = form.cleaned_data.get("password")
-            user = authenticate(request, email=email, password=password)
-            if user is not None:
-                auth_login(request, user)
-                return redirect('profile')
-            else:
-                message = 2 
-        else:
-            message = 1  
-    else:
-        form = AuthenticationForm()
 
-
-    context = {
-        'form': form,
-        'message': message,
-    }
-    return render(request, 'login.html', context=context)
-
-
-
-@login_required
-def profile(request):
-
-    return render(request,"profile.html")
 # Create your views here.
 
 

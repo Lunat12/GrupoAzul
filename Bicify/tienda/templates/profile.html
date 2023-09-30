@@ -1,0 +1,22 @@
+{% load static %}
+
+{% block title %} 
+    <title> Profile </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/inicio_registro.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container custom-container">
+        <h1 class="title">Profile</h1>
+        <p>Nombre: {{ user_profile.name }}</p>
+        <p>Apellido: {{ user_profile.last_name }}</p>
+        <p>Email: {{ user_profile.email }}</p>
+        <p>Phone: {{ user_profile.phone }}</p>
+        <p>Card number: {{ user_profile.card_number }}</p>
+        <p>Card name: {{ user_profile.card_name }}</p>
+        <p>Address: {{ user_profile.address }}</p>
+        <p>Billing address: {{ user_profile.billing_address }}</p>
+        <p>City: {{ user_profile.city }}</p>
+        <p>Zip_code: {{ user_profile.zip_code }}</p>
+    </div>
+{% endblock %}

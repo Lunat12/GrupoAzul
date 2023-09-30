@@ -2,28 +2,12 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-class User(models.Model):
-    name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=15)
-    password = models.CharField(max_length=255)
-    card_number = models.CharField(max_length=16, blank=True, null=True)
-    card_name = models.CharField(max_length=255, blank=True, null=True)
-    address = models.TextField()
-    billing_address = models.TextField()
-    city = models.CharField(max_length=100)
-    zip_code = models.CharField(max_length=10)
-    premium_user = models.BooleanField(default=False)
-    admin_user = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.name
     
-@receiver(pre_save, sender=User)
-def roles(sender, instance, **kwargs):
-    if instance.premium_user and instance.admin_user:
-        raise ValidationError("No puedes ser tanto un usuario premium como un administrador al mismo tiempo.")
+#@receiver(pre_save, sender=User)
+#def roles(sender, instance, **kwargs):
+    #if instance.premium_user and instance.admin_user:
+        #raise ValidationError("No puedes ser tanto un usuario premium como un administrador al mismo tiempo.")
 
 class Product(models.Model):
 

@@ -31,7 +31,7 @@ class NewRegisterForm(forms.Form):
                         widget=forms.CheckboxInput(attrs={'class':"form-control",'placeholder':'name'}))
     
 class LoginForm(AuthenticationForm):
-    email = forms.CharField(label='email', max_length=250,
-                        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'email'}))
-    password = forms.CharField(label='password', 
-                        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))
+    email = forms.CharField(label='Email', max_length=250, 
+                        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    password = forms.CharField(label='Password', 
+                        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
