@@ -26,7 +26,7 @@ def index(request):
         "products":products,
     }
     
-    return render(request, "main.html", context=context)
+    return render(request, "catalogo.html", context=context)
 
 def register(request):
     message = 0
