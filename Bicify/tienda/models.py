@@ -22,10 +22,10 @@ class Registers(models.Model):
         ordering = ['id_user']
 
 
-#@receiver(pre_save, sender=User)
-#def roles(sender, instance, **kwargs):
-    #if instance.premium_user and instance.admin_user:
-        #raise ValidationError("No puedes ser tanto un usuario premium como un administrador al mismo tiempo.")
+@receiver(pre_save, sender=User)
+def roles(sender, instance, **kwargs):
+    if instance.premium_user and instance.admin_user:
+        raise ValidationError("No puedes ser tanto un usuario premium como un administrador al mismo tiempo.")
 
 class Product(models.Model):
 
