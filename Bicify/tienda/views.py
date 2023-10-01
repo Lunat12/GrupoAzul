@@ -1,6 +1,6 @@
 
 from .forms import NewRegisterForm, LoginForm
-from .models import User, Product, Categories, Subcategories
+from .models import User, Product, Categories, Subcategories, Cart
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login as auth_login
 
 def index(request, pk='Montaña'):
     products = []
-    selected = Subcategories.objects.get(pk=pk)
+    selected = Subcategories.objects.get(product_subcategories=pk)
 
     shown = Product.objects.filter(subcategory__exact=selected.product_subcategories)
 
@@ -88,6 +88,29 @@ def register(request):
     }
 
     return render(request,"register.html",context=context)
+
+def carrito(request):
+    user = request.user
+    currentUser = None
+    total = 0
+    
+    for usuario in User.objects.all():
+        if usuario.user == user:
+            currentUser = usuario
+            
+    order = Cart.objects.filter(id_user__exact=currentUser)
+    
+    carrito = order.product_list
+        
+    for content in carrito:
+        total += content.cost
+        
+    context = {
+        "carrito":carrito,
+        "total":total,
+    }
+    
+    return render(request, "carrito.html", context = context)
 
 
 #@login_required
