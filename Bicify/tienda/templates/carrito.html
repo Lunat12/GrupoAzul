@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="top-container">
+                <h1>Carrito</h1>
+            </div>
+        </div>
+    </div>
+    <hr class="divisor">
+    </div>
+    <div class="row products-row">
+        {% if carrito %}
+            {% for product in carrito %}
+                <div class="col-md-12">
+                    <div class="item-cart-container">
+                        <img class="cart-image" src="{{product.image}}" alt="{{product.name}}">
+                        <div class="cart-item-data">
+                            <p>{{product.name}}</p>
+                            <p>{{product.price}}€</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr class="divisor">
+            <div class="col-md-12 top-container">
+                <h1>Total</h1>
+                <p>{{total}}€</p>
+                <button class="product-button">Comprar</button>
+            </div>
+        {% else %}
+            <div class="no-products">
+                <p>El carrito esta vacio</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
