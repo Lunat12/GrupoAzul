@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 
 
@@ -35,12 +36,12 @@ class Product(models.Model):
     )
 
     SUBCATEGORY_CHOICES =(
-        ('Sillines','Sillines'),
-        ('Cadenas','Cadenas'),
-        ('Ruedas','Ruedas'),
-        ('Bomba de aire','Bomba de aire'),
-        ('Manguitos','Manguitos'),   
-        ('Candado','Candado'),
+        ('Montaña','Montaña'),
+        ('BMX','BMX'),
+        ('Urbano','Urbano'),
+        ('Grava','Grava'),
+        ('Electrica','Electrica'),
+        ('Accesorios','Accesorios'),
         )
 
     product_name = models.CharField(max_length=255)
@@ -77,9 +78,15 @@ class Categories(models.Model):
 
     product_categories = models.CharField(max_length=255)
 
+    # def get_absolute_url_categories(self):
+    #     return reverse('',args=[str(self.product_categories)])
+
 
 class Subcategories(models.Model):
     product_subcategories = models.CharField(max_length=255)
+
+    def get_absolute_url_subcategories(self):
+        return reverse('index',args=[str(self.product_subcategories)])
 
 
 # Create your models here.

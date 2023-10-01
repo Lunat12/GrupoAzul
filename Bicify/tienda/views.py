@@ -9,24 +9,48 @@ from django.contrib.auth import authenticate, login as auth_login
 
 
 
-def index(request):
+def index(request, pk='Montaña'):
     products = []
+    selected = Subcategories.objects.get(pk=pk)
+
+    shown = Product.objects.filter(subcategory__exact=selected.product_subcategories)
 
     if request.POST:
         applied = request.POST
 
-        for product in Product.objects.all():
-            if(applied.get("search").lower() in product.product_name.lower() or applied.get("search").lower() in product.description.lower() or applied.get("search").capitalize() == product.category or applied.get("search").lower() == product.color.lower()):
+        for product in shown:
+            if(applied.get("search").lower() in product.product_name.lower() or applied.get("search").lower() in product.description.lower() or applied.get("search").lower() == product.color.lower()):
                 products.append(product)
 
     else:
-        products = Product.objects.all()
+        products = shown
     
     context = {
         "products":products,
     }
     
     return render(request, "catalogo.html", context=context)
+
+def accesories(request):
+    products = []
+
+    shown = Product.objects.filter(subcategory__exact="Accesorios")
+
+    if request.POST:
+        applied = request.POST
+
+        for product in shown:
+            if(applied.get("search").lower() in product.product_name.lower() or applied.get("search").lower() in product.description.lower() or applied.get("search").lower() == product.color.lower()):
+                products.append(product)
+
+    else:
+        products = shown
+    
+    context = {
+        "products":products,
+    }
+    
+    return render(request, "accesorios.html", context=context)
 
 def register(request):
     message = 0
