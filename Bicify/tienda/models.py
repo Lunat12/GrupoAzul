@@ -30,19 +30,19 @@ class Registers(models.Model):
 class Product(models.Model):
 
     CATEGORY_CHOICES =(
-        ('Bicicletas','Bicicleta'),
+        ('Bicicletas','Bicicletas'),
         ('Accesorios','Accesorios'),
     )
 
     SUBCATEGORY_CHOICES =(
-        ('Sillines','Sillines'),
-        ('Cadenas','Cadenas'),
-        ('Ruedas','Ruedas'),
-        ('Bomba de aire','Bomba de aire'),
-        ('Manguitos','Manguitos'),   
-        ('Candado','Candado'),
+        ('Montaña','Montaña'),
+        ('BMX','BMX'),
+        ('Urbano','Urbano'),
+        ('Grava','Grava'),
+        ('Electrica','Electrica'),   
+        ('Accesorios','Accesorios'),
         )
-
+    
     product_name = models.CharField(max_length=255)
     product_images = models.ImageField(upload_to='product_images/')
     description = models.TextField()
